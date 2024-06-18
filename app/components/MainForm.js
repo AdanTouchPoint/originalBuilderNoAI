@@ -23,6 +23,7 @@ const MainForm = ({
   endpoints,
   backendURLBaseServices,
   allDataIn,
+  setAllDataIn,
   colors,
   formFields,
   emails,
@@ -73,6 +74,9 @@ const MainForm = ({
       setError(true);
       return;
     }
+    setDataUser({...dataUser,
+     email: allDataIn
+    })
     setError(false);
     setShowMainContainer(true);
     setHideList(false);

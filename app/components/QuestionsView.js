@@ -99,7 +99,7 @@ const QuestionsView = ({
             placeholder={"subject"}
             name={"subject"}
             onChange={handleChange}
-            className="subject-input"
+            className="input-color subject-input"
             required
           />
         </Form.Group>

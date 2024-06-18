@@ -58,7 +58,7 @@ const click = async (e) => {
       style={{ justifyContent: "center", display: "flex" }}
     >
       <div style={{ maxWidth: "700px", width: "100%" }}>
-        <h2>Craft your email</h2>
+        <h2 className="ia-instructions-title">Craft your email</h2>
         {error ? (
           <Alert variant={"danger"}>All fields are required!</Alert>
         ) : null}
@@ -73,7 +73,7 @@ const click = async (e) => {
         <Form noValidate validated={validated}>
         {dataQuestions
           ? dataQuestions.map((key, value) => (
-              <Col key={value} className="questions">
+              <Col key={value} className="label-ia-prompt">
                 <Form.Group>
                   <Form.Label> {key.questions} </Form.Label>
                   <Form.Control
