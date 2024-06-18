@@ -20,9 +20,9 @@ const QuestionsView = ({
   setHideQuestionsView,
   setHideQuestions,
   setError,
-  error
+  error,
 }) => {
-  console.log(mainData)
+  console.log(mainData);
   const elements = (questions) => {
     return Object.keys(questions).map((clave) =>
       questions[clave].split("<br/>").map((line, index) => (
@@ -35,8 +35,8 @@ const QuestionsView = ({
   };
   const back = () => {
     setHideQuestionsView(true);
-    setHideQuestions(false)
-    setError(false)
+    setHideQuestions(false);
+    setError(false);
   };
   const handleChange = (e) => {
     setDataUser({
@@ -48,7 +48,7 @@ const QuestionsView = ({
   const today = hoy.toDateString();
   const click = async (e) => {
     e.preventDefault();
-    if(!dataUser.subject) return setError(true)
+    if (!dataUser.subject) return setError(true);
     let message = JSON.stringify(questions);
     setShowThankYou(false);
     setHideQuestionsView(true);
@@ -82,31 +82,30 @@ const QuestionsView = ({
   return (
     <div
       hidden={hideQuestionsView}
-      className={"container"}
+      className={"container emailContainer formEmail"}
       style={{ justifyContent: "center", display: "flex" }}
     >
       <div style={{ maxWidth: "700px", width: "100%" }}>
         <h2>{mainData.titlePreview}</h2>
         <p>{mainData.intructionsPreview}</p>
         {error ? (
-            < Alert variant={"danger"}>
-              Please Select One Option
-            </Alert>
-          ) : null}
+          <Alert variant={"danger"}>Please Select One Option</Alert>
+        ) : null}
         <Form.Group className="field">
-          <Form.Label className="select-label">subject</Form.Label>
+          <Form.Label className="subject-label">subject</Form.Label>
           <Form.Control
             id={"subject"}
             type={"text"}
             placeholder={"subject"}
             name={"subject"}
             onChange={handleChange}
+            className="subject-input"
             required
           />
         </Form.Group>
-        <div style={{ textAlign: "left" }}>
+        <div className="email-ia-text-area">
           <Card body>
-            <p style={{fontSize: "13px"}}>
+            <p style={{ fontSize: "13px" }}>
               Committee Secretary
               <br />
               [Committee Name] <br />
@@ -118,19 +117,22 @@ const QuestionsView = ({
               {today} <br />
               {dataUser.type} Submission by {dataUser.userName}
             </p>
-            <div style={{fontSize: "13px"}}>
+            <div style={{ fontSize: "13px" }}>
               {questions ? elements(questions) : null}
-            <p>Best regards.</p>
+              <p>Best regards.</p>
             </div>
           </Card>
         </div>
         <p style={{ padding: "15px" }}> {mainData.textPreview} </p>
-        <Button onClick={back} className={"u-full-width"}>
-          Back
-        </Button>
-        <Button onClick={click} className={"u-full-width"}>
-          Send
-        </Button>
+
+        <div className="btn-container-checklist">
+          <Button className="back-button" size={"lg"} onClick={back}>
+            Back
+          </Button>
+          <Button onClick={click} className="continue-button" size={"lg"}>
+            Send
+          </Button>
+        </div>
       </div>
     </div>
   );

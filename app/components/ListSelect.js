@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/cjs/Button";
 import Alert from "react-bootstrap/Alert";
-
 const ListSelect = ({
   setError,
   error,
@@ -44,9 +43,9 @@ const ListSelect = ({
     setError(false)
   };
   return (
-    <>
+    < div  hidden={hideList} className={"container container-content form-container"}>
       <div
-        hidden={hideList}
+       
         className={"buttons-list-container list-container"}
       >
         {error ? (
@@ -74,7 +73,7 @@ const ListSelect = ({
         <div className="btn-container-checklist">
           <Button
             id="representativeList-button"
-            className="continue-button"
+            className="back-button"
             size={"lg"}
             onClick={back}
           >
@@ -90,7 +89,7 @@ const ListSelect = ({
           </Button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

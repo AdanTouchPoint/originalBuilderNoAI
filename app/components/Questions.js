@@ -54,7 +54,7 @@ const click = async (e) => {
   return (
     <div
       hidden={hideQuestions}
-      className={"container"}
+      className={"container container-content form-container"}
       style={{ justifyContent: "center", display: "flex" }}
     >
       <div style={{ maxWidth: "700px", width: "100%" }}>
@@ -88,11 +88,18 @@ const click = async (e) => {
               </Col>
             ))
           : null}
-          <div style={{padding: "15px"}}>
-          <Button onClick={back}>Back</Button>
-          </div>
-          <div style={{padding: "15px"}}>
-          <Button onClick={click}>Next</Button>
+          <div className="btn-container-checklist">
+          <Button
+            className="back-button"
+            size={"lg"}
+            onClick={back}
+            >
+              Back
+          </Button>
+          <Button
+          className="continue-button"
+          size={"lg"}
+          onClick={click}>Next</Button>
           </div>
         </Form>
       </div>

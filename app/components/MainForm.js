@@ -29,11 +29,11 @@ const MainForm = ({
   dataQuestions,
   setDataQuestions,
   questions,
-  setQuestions
+  setQuestions,
 }) => {
-  const [privacyType,setPrivacyType] = useState('')
-  const [hideQuestions,setHideQuestions] = useState(true)
-  const [hideQuestionsView,setHideQuestionsView] = useState(true)
+  const [privacyType, setPrivacyType] = useState("");
+  const [hideQuestions, setHideQuestions] = useState(true);
+  const [hideQuestionsView, setHideQuestionsView] = useState(true);
   const [hideEmailForm, setHideEmailForm] = useState(true);
   const [hideList, setHideList] = useState(true);
   const [showLoadSpin, setShowLoadSpin] = useState(false);
@@ -62,25 +62,25 @@ const MainForm = ({
     });
   };
   const click = async (e) => {
-  const form = e.currentTarget;
-  if (form.checkValidity() === false) {
-    e.preventDefault();
-    e.stopPropagation();
-  }
-  setValidated(true);
-  const data = await verifyInputs(dataUser,formFields)
-  if (data === false || tac === false) {
-      setError(true)
-      return
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
     }
-    setError(false)
-    setShowMainContainer(true)
-    setHideList(false)
-    setValidated(false)
-  }
+    setValidated(true);
+    const data = await verifyInputs(dataUser, formFields);
+    if (data === false || tac === false) {
+      setError(true);
+      return;
+    }
+    setError(false);
+    setShowMainContainer(true);
+    setHideList(false);
+    setValidated(false);
+  };
   if (!mainData) return "loading datos";
   if (!mp) return "loading datos";
-  console.log(dataUser)
+  console.log(dataUser);
   return (
     <div className={"contenedor main-form-flex-container"}>
       <div className={"container instructions"}></div>
@@ -188,8 +188,12 @@ const MainForm = ({
                 }
               />
             </Form.Group>
-            <Button onClick={click}>Next</Button>
-            <Form.Group className="main-find-btn-container"></Form.Group>
+            <Form.Group className="main-find-btn-container">
+              <Button
+              className="continue-button"
+              size={"lg"}
+              onClick={click}>Next</Button>
+            </Form.Group>
             {showLoadSpin ? loading("spinner-containerB") : null}
           </Form>
         </div>
@@ -202,7 +206,7 @@ const MainForm = ({
         hideList={hideList}
         setHideList={setHideList}
         setDataUser={setDataUser}
-        dataUser={dataUser} 
+        dataUser={dataUser}
       />
       <Questions
         setShowMainContainer={setShowMainContainer}
