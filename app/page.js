@@ -32,15 +32,10 @@ function Home() {
     toGetAllLeads: "/leads/",
     toGetColors: "/theme/",
   });
-  const [emails, setEmails] = useState(["TEST1", "TEST2"]);
   const [mp, setMp] = useState([]);
-  const [senator, setSenator] = useState([]);
   const [states, setStates] = useState([]);
-  const [tweet, setTweet] = useState("");
-  const [leads, setLeads] = useState();
   const [dataQuestions, setDataQuestions] = useState([]);
   const [questions, setQuestions] = useState({});
-  const [user, setUser] = useState("");
   const [mainData, setMainData] = useState({
     mainImg: "./assets/laptop-with-notebook-and-glasses-on-table.jpg",
     title: "Please enter a title on your board",
@@ -165,33 +160,22 @@ function Home() {
       {loading && <LoadingMainForm cl={"spinner-container"} />}
       {!loading && (
         <MainForm
-          emails={emails}
-          setEmails={setEmails}
-          setLeads={setLeads}
-          leads={leads}
-          setEmailData={setEmailData}
           emailData={emailData}
           dataUser={dataUser}
           setDataUser={setDataUser}
           mp={mp}
-          setMp={setMp}
-          senator={senator}
-          setSenator={setSenator}
           clientId={clientId}
           states={states}
           endpoints={endpoints}
-          tweet={tweet}
           typData={typData}
           mainData={mainData}
           formFields={formFields}
           backendURLBase={backendURLBase}
           backendURLBaseServices={backendURLBaseServices}
           dataQuestions={dataQuestions}
-          setDataQuestions={setDataQuestions}
           questions={questions}
           setQuestions={setQuestions}
           allDataIn={allDataIn}
-          setAllDataIn={setAllDataIn}
           colors={colors}
         />
       )}

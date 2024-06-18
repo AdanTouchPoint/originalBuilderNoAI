@@ -23,12 +23,9 @@ const MainForm = ({
   endpoints,
   backendURLBaseServices,
   allDataIn,
-  setAllDataIn,
   colors,
   formFields,
-  emails,
   dataQuestions,
-  setDataQuestions,
   questions,
   setQuestions,
 }) => {

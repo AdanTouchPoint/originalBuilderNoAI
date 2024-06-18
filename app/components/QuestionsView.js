@@ -89,7 +89,7 @@ const QuestionsView = ({
         <h2>{mainData.titlePreview}</h2>
         <p>{mainData.intructionsPreview}</p>
         {error ? (
-          <Alert variant={"danger"}>Please Select One Option</Alert>
+          <Alert variant={"danger"}>Please Enter a Subject</Alert>
         ) : null}
         <Form.Group className="field">
           <Form.Label className="subject-label">subject</Form.Label>
