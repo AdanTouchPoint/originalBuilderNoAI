@@ -29,10 +29,8 @@ const MainForm = ({
   questions,
   setQuestions,
 }) => {
-  const [privacyType, setPrivacyType] = useState("");
   const [hideQuestions, setHideQuestions] = useState(true);
   const [hideQuestionsView, setHideQuestionsView] = useState(true);
-  const [hideEmailForm, setHideEmailForm] = useState(true);
   const [hideList, setHideList] = useState(true);
   const [showLoadSpin, setShowLoadSpin] = useState(false);
   const [showFindForm, setShowFindForm] = useState(false);

@@ -31,42 +31,45 @@ const ListSelect = ({
     });
   };
   const click = async () => {
-    if(!dataUser.type)  return setError(true)
+    if (!dataUser.type) return setError(true);
     setHideQuestions(false);
     setHideList(true);
     setShowMainContainer(true);
-    setError(false)
+    setError(false);
   };
   const back = () => {
     setHideList(true);
     setShowMainContainer(false);
-    setError(false)
+    setError(false);
   };
   return (
-    < div  hidden={hideList} className={"container container-content form-container"}>
-      <div
-       
-        className={"buttons-list-container list-container"}
-      >
+    <div
+      hidden={hideList}
+      className={"container container-content form-container"}
+    >
+      <div className={"buttons-list-container list-container"}>
         {error ? (
-            < Alert variant={"danger"}>
-              Please Select One Option
-            </Alert>
-          ) : null}
+          <Alert variant={"danger"}>Please Select One Option</Alert>
+        ) : null}
         {privacy?.map((option, index) => (
           <>
             {Object.keys(option).map((key) => (
-              <label key={index} className="list-mp-row">
-                <input
-                  id="representativeList-checkbox"
-                  type="checkbox"
-                  onChange={handleChange}
-                  className="form-check-input"
-                  value={key}
-                  name="type"
-                />
-                <h5 className="list-mp-row-info">{ key + option[key]}</h5>
-              </label>
+              <>
+                <label className="select-label main-texts-color labels-text-format form-label">
+                  {key}
+                </label>
+                <label key={index} className="list-mp-row">
+                  <input
+                    id="representativeList-checkbox"
+                    type="checkbox"
+                    onChange={handleChange}
+                    className="form-check-input"
+                    value={key}
+                    name="type"
+                  />
+                  <h5 className="list-mp-row-info">{option[key]}</h5>
+                </label>
+              </>
             ))}
           </>
         ))}
