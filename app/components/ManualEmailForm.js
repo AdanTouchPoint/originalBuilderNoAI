@@ -156,12 +156,12 @@ const ManualEmailForm = ({
         >
           <div>
           
-          <>
+          <div className="instructions-container">
               <h3 className="ia-instructions-title main-text-title">{mainData.titleNoAI ? mainData.titleNoAI : 'Write your email'}</h3>
             <p className="ia-instructions-p main-text-instruction">
               {mainData.intructionsNoAI? mainData.intructionsNoAI : 'Customer instructions for the user. Here the client can give the user recommendations on what to mention in the email and how to write the subject.'}
             </p>
-          </>
+          </div>
             
               <div>
                 {" "}

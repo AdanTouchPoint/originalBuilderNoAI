@@ -75,13 +75,14 @@ const click = async (e) => {
           ? dataQuestions.map((key, value) => (
               <Col key={value} className="label-ia-prompt">
                 <Form.Group>
-                  <Form.Label> {key.questions} </Form.Label>
+                  <Form.Label className="label-question"> {key.questions} </Form.Label>
                   <Form.Control
                     id="message-emailform"
                     onChange={handleText}
                     as="textarea"
                     type="text-area"
                     name={`question${value + 1}`}
+                    className="input-color main-form-inputs"
                     required
                   />
                 </Form.Group>

@@ -48,6 +48,13 @@ const ListSelect = ({
       className={"container container-content form-container"}
     >
       <div className={"buttons-list-container list-container"}>
+       <div className="instructions-container">
+        <h3 className="main-texts-color main-text-title">
+        Submission privacy
+        </h3>
+
+       </div>
+
         {error ? (
           <Alert variant={"danger"}>Please Select One Option</Alert>
         ) : null}
@@ -55,7 +62,7 @@ const ListSelect = ({
           <>
             {Object.keys(option).map((key) => (
               <>
-                <label className="select-label main-texts-color labels-text-format form-label">
+                <label className="select-label main-texts-color labels-text-format form-label label-question">
                   {key}
                 </label>
                 <label key={index} className="list-mp-row">

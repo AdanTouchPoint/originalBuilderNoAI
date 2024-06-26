@@ -4,6 +4,9 @@
     border-radius: 5px;
     cursor: pointer;
 }
+.share-buttoner{
+    display: flex;
+}
 .button:hover {
     background-color: #2d4373;
   } 

@@ -104,7 +104,7 @@ const QuestionsView = ({
           />
         </Form.Group>
         <div className="email-ia-text-area">
-          <Card body>
+          <Card body className="body-card">
             <p style={{ fontSize: "13px" }}>
               Committee Secretary
               <br />
