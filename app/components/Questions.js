@@ -57,7 +57,7 @@ const click = async (e) => {
       className={"container container-content form-container"}
       style={{ justifyContent: "center", display: "flex" }}
     >
-      <div style={{ maxWidth: "700px", width: "100%" }}>
+      <div className="ia-container">
         <h2 className="ia-instructions-title">Craft your email</h2>
         {error ? (
           <Alert variant={"danger"}>All fields are required!</Alert>

@@ -353,6 +353,7 @@ font-style: normal;
 font-weight: 600;
 line-height: normal;
 margin-top: 30px;
+text-align: left;
 }
 .list-mp-row-info{
   display: flex;
@@ -363,7 +364,9 @@ margin-top: 30px;
  text-align: left;
  max-width: 90%;   
 }
-
+.ia-container{
+  width: 100%;
+}
 .ia-instructions-title{
   color: var(--main-texts-color);
   font-family: 'Inter';
@@ -450,7 +453,7 @@ line-height: normal;
   color: var(--main-texts-color);
 text-align: center;
 font-family: Inter;
-font-size: 60px;
+font-size: 40px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
@@ -459,7 +462,7 @@ line-height: normal;
   color: var(--main-texts-color);
 text-align: center;
 font-family: Inter;
-font-size: 30px;
+font-size: 25px;
 font-style: normal;
 font-weight: 400;
 line-height: normal;
@@ -468,10 +471,11 @@ line-height: normal;
   color: var(--main-texts-color);
 text-align: center;
 font-family: Inter;
-font-size: 40px;
+font-size: 30px;
 font-style: normal;
 font-weight: 700;
 line-height: normal;
+margin-top: 80px;
 }
 .capitalize-style{
   text-transform: capitalize;
