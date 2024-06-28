@@ -61,7 +61,7 @@ const ListSelect = ({
         {privacy?.map((option, index) => (
           <>
             {Object.keys(option).map((key) => (
-              <>
+              <div className="list-element-label-confidentiality">
                 <label className="select-label main-texts-color labels-text-format form-label label-question">
                   {key}
                 </label>
@@ -76,7 +76,7 @@ const ListSelect = ({
                   />
                   <h5 className="list-mp-row-info">{option[key]}</h5>
                 </label>
-              </>
+              </div>
             ))}
           </>
         ))}
