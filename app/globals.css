@@ -341,6 +341,7 @@ display: flex;
   align-items: center;
   padding: 15px 15px 15px 15px;
   text-transform: capitalize;
+  width: 100%;
 }
 .list-mp-row > input {
   margin: 0px;
