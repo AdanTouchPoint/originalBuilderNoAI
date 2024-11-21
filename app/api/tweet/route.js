@@ -1,4 +1,4 @@
-// app/api/completion/route.ts
+/* // app/api/completion/route.ts
  
 import OpenAI from 'openai'
 import { OpenAIStream, StreamingTextResponse } from 'ai'
@@ -38,4 +38,4 @@ Output:\n`
   const stream = OpenAIStream(response)
  
   return new StreamingTextResponse(stream)
-}
+} */
