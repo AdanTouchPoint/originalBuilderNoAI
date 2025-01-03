@@ -7,17 +7,13 @@ import Col from "react-bootstrap/Col";
 import {verifyInputs} from "../assets/helpers/utilities"
 const Questions = ({
   dataQuestions,
-  hideQuestions,
   questions,
   setQuestions,
-  setHideQuestionsView,
   validated,
   setValidated,
   error,
   setError,
-  setHideList,
-  setShowMainContainer,
-  setHideQuestions
+  setActiveSection,
 }) => {
   const handleText = (e) => {
     setQuestions({
@@ -42,18 +38,14 @@ const click = async (e) => {
   return
  }
   setError(false)
-  await setShowMainContainer(true);
-  await setHideQuestionsView(false)
-  await setHideQuestions(true)
+  setActiveSection("questionsView");
   };
   const back = () => {
-    setHideQuestions(true);
-    setHideList(false);
     setError(false)
+    setActiveSection("listSelect")
   };
   return (
     <div
-      hidden={hideQuestions}
       className={"container container-content form-container"}
       style={{ justifyContent: "center", display: "flex" }}
     >

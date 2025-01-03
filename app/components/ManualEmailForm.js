@@ -13,26 +13,15 @@ const ManualEmailForm = ({
   leads,
   setLeads,
   questions,
-  setShowThankYou,
-  setShowFindForm,
   dataUser,
   setDataUser,
-  hideIAPrompt,
-  setHideIAPrompt,
   emailData,
-  setEmailData,
   clientId,
   backendURLBase,
   endpoints,
   backendURLBaseServices,
   mainData,
-  setShowList,
   allDataIn,
-  setMany,
-  many,
-  setShowMainContainer,
-  showManualEmailForm,
-  setShowManualEmailForm,
   isLoading
 }) => {
   const [showEmailPreview, setShowEmailPreview] = useState(true);
@@ -90,11 +79,6 @@ const ManualEmailForm = ({
           messageEmail,
           'message-multiple-representatives-lead'
         );
-        setShowManualEmailForm(true);
-        setShowFindForm(true);
-        setShowEmailPreview(true);
-        setShowThankYou(false);
-        setLeads(leads + 1);
       }
       if (payload.success !== true) {
         fetchLeads(
@@ -124,9 +108,6 @@ const ManualEmailForm = ({
   };
   const back = (e) => {
     e.preventDefault();
-    setShowManualEmailForm(true);
-    setShowFindForm(false);
-    setShowMainContainer(false);
     console.log(dataUser, 'dataUser')
   };
   const loading = (cl) => {
@@ -142,7 +123,7 @@ const ManualEmailForm = ({
 
               </div>
             ) : (
-            <div className={"emailContainer"} hidden={showManualEmailForm}>
+            <div className={"emailContainer"}>
         {error ? (
           <Alert variant={"danger"}>
             All fields are required, please fill in the missing ones.

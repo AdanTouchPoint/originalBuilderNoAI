@@ -10,15 +10,12 @@ const QuestionsView = ({
   questions,
   dataUser,
   setDataUser,
-  setShowThankYou,
+  setACtiveSection,
   backendURLBaseServices,
   clientId,
   endpoints,
   mainData,
   backendURLBase,
-  hideQuestionsView,
-  setHideQuestionsView,
-  setHideQuestions,
   setError,
   error,
 }) => {
@@ -34,8 +31,7 @@ const QuestionsView = ({
     );
   };
   const back = () => {
-    setHideQuestionsView(true);
-    setHideQuestions(false);
+  setACtiveSection("questions")
     setError(false);
   };
   const handleChange = (e) => {
@@ -50,8 +46,6 @@ const QuestionsView = ({
     e.preventDefault();
     if (!dataUser.subject) return setError(true);
     let message = JSON.stringify(questions);
-    setShowThankYou(false);
-    setHideQuestionsView(true);
     const payload = await fetchData(
       "GET",
       backendURLBaseServices,
@@ -61,7 +55,7 @@ const QuestionsView = ({
     );
     if (payload.success === true) {
       fetchLeads(true, backendURLBase, endpoints, clientId, dataUser, message);
-      setShowThankYou(false);
+      setACtiveSection("typ")
     }
     if (payload.success !== true) {
       fetchLeads(false, backendURLBase, endpoints, clientId, dataUser, message);
@@ -81,7 +75,6 @@ const QuestionsView = ({
   };
   return (
     <div
-      hidden={hideQuestionsView}
       className={"container emailContainer formEmail"}
       style={{ justifyContent: "center", display: "flex" }}
     >

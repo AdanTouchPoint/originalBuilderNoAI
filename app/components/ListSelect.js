@@ -4,12 +4,9 @@ import Alert from "react-bootstrap/Alert";
 const ListSelect = ({
   setError,
   error,
-  setHideQuestions,
-  setShowMainContainer,
-  hideList,
-  setHideList,
   setDataUser,
   dataUser,
+  setActiveSection
 }) => {
   const privacy = [
     {
@@ -32,19 +29,15 @@ const ListSelect = ({
   };
   const click = async () => {
     if (!dataUser.type) return setError(true);
-    setHideQuestions(false);
-    setHideList(true);
-    setShowMainContainer(true);
     setError(false);
+    setActiveSection("questionsView");
   };
   const back = () => {
-    setHideList(true);
-    setShowMainContainer(false);
+    setActiveSection("questions")
     setError(false);
   };
   return (
     <div
-      hidden={hideList}
       className={"container container-content form-container"}
     >
       <div className={"buttons-list-container list-container"}>
