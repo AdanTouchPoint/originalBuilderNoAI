@@ -30,10 +30,10 @@ const ListSelect = ({
   const click = async () => {
     if (!dataUser.type) return setError(true);
     setError(false);
-    setActiveSection("questionsView");
+    setActiveSection("questions");
   };
   const back = () => {
-    setActiveSection("questions")
+    setActiveSection("mainForm")
     setError(false);
   };
   return (

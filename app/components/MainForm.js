@@ -29,27 +29,37 @@ const MainForm = ({
   questions,
   setQuestions,
 }) => {
+  console.log(mainData)
   const [activeSection, setActiveSection] = useState('');
   const [showLoadSpin, setShowLoadSpin] = useState(false);
   const [validated, setValidated] = useState(false);
   const [error, setError] = useState(false);
   const [tac, setTac] = useState(false);
+  const title = mainData.mainform?.title?.text;
+  const instructions = mainData.mainform?.instructions?.text;
   const loading = (cl) => {
     scroll.scrollTo(1000);
     return <LoadingMainForm cl={cl} />;
   };
-  const click = async (e) => {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
+  const isValidEmail = (email) => {
+    if (!email) {
+      return false;
     }
-    setValidated(true);
-    const data = await verifyInputs(dataUser, formFields);
-    if (data === false || tac === false) {
+    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    return emailRegex.test(email.trim());
+  };
+  const click = async (e) => {
+    if (
+      !isValidEmail(dataUser.emailUser) ||
+      tac === false ||
+      Object.getOwnPropertyNames(dataUser).length === 0 ||
+      dataUser.userName === undefined ||
+      dataUser.emailUser === undefined
+    ) {
       setError(true);
       return;
     }
+    setValidated(true);
     setDataUser({...dataUser,
      email: allDataIn
     })
@@ -88,28 +98,41 @@ const MainForm = ({
       >
         <div className="instructions-container">
           <h3 className="main-texts-color main-text-title">
-            {mainData.title}
+            {title}
           </h3>
           <p className="main-texts-color main-text-instruction">
-            {mainData.instruction}
+            {instructions}
           </p>
         </div>
         {/* <h3 className="find-her-mp-text main-texts-color">{mainData.firstFormLabel1}</h3> */}
         <div className="fields-form">
-          {formFields.map((field, key) => {
+          {mainData.mainform?.mainFormInputs?.map((field, key) => {
+            const fieldText = field.text
             return field.type !== "state" ? (
               <Form.Group className="field" key={key}>
                 <Form.Label
                   className="select-label main-texts-color labels-text-format"
                   htmlFor={`emailInput-mainForm${key}`}
                 >
-                  {field.label}*
+                  {field.text}*
                 </Form.Label>
                 <Form.Control
                   id={`emailInput-mainForm${key}`}
                   type={field.type === "emailUser" ? "email" : field.type}
                   placeholder={field.placeholder}
-                  name={field.type === "name" ? "userName" : field.type}
+                  name={
+                    field.text === "name"
+                      ? "userName"
+                      : field.text === "email"
+                      ? "emailUser"
+                      : field.text
+                  }
+                  defaultValue={ 
+                    field.text === 'name' 
+                    ? dataUser.userName
+                    : field.text === "email"
+                    ? dataUser.emailUser 
+                    : dataUser[fieldText] }
                   onChange={handleChange}
                   className="input-color main-form-inputs"
                   required
@@ -202,7 +225,6 @@ const MainForm = ({
       case 'questions':
         return <Questions
         setActiveSection={setActiveSection}
-        setShowMainContainer={setShowMainContainer}
         dataQuestions={dataQuestions}
         dataUser={dataUser}
         questions={questions}
@@ -234,7 +256,7 @@ const MainForm = ({
         colors={colors}
         />
         default :
-        return renderMainFormSection(title, instruction, formFields, states)
+        return renderMainFormSection(title, instructions, mainData, error)
     }
   }
   return (

@@ -27,6 +27,7 @@ function Home() {
     toGetRepresentativesByCp: "/find-mp-demo/",
     toGetMainData: "/main/",
   });
+  const  [err, setErr] = useState(false);
   const [mp, setMp] = useState([]);
   const [states, setStates] = useState([]);
   const [dataQuestions, setDataQuestions] = useState([]);
@@ -48,7 +49,9 @@ function Home() {
     }
     const pageData = initialState?.data[0]
     if(initialState.data?.length > 0 ) {
-      const{mainform, emailform, emailPreview, questions} = pageData
+      console.log(pageData.questions?.questions)
+      const questions = pageData.questions?.questions
+      const{mainform, emailform, emailPreview } = pageData
       setMainData({mainform, emailform, emailPreview})
       setDataQuestions(questions)
       setColors(pageData.style)
@@ -114,7 +117,6 @@ function Home() {
           endpoints={endpoints}
           typData={typData}
           mainData={mainData}
-          formFields={formFields}
           backendURLBase={backendURLBase}
           backendURLBaseServices={backendURLBaseServices}
           dataQuestions={dataQuestions}

@@ -44,6 +44,7 @@ const click = async (e) => {
     setError(false)
     setActiveSection("listSelect")
   };
+  console.log(dataQuestions)
   return (
     <div
       className={"container container-content form-container"}
@@ -64,16 +65,16 @@ const click = async (e) => {
         ></Link>
         <Form noValidate validated={validated}>
         {dataQuestions
-          ? dataQuestions.map((key, value) => (
+          ? dataQuestions?.map((value,key) => (
               <Col key={value} className="label-ia-prompt">
                 <Form.Group>
-                  <Form.Label className="label-question"> {key.questions} </Form.Label>
+                  <Form.Label className="label-question"> {value.text} </Form.Label>
                   <Form.Control
                     id="message-emailform"
                     onChange={handleText}
                     as="textarea"
                     type="text-area"
-                    name={`question${value + 1}`}
+                    name={`question${key + 1}`}
                     className="input-color main-form-inputs"
                     required
                   />

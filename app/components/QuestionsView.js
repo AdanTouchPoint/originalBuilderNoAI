@@ -10,7 +10,7 @@ const QuestionsView = ({
   questions,
   dataUser,
   setDataUser,
-  setACtiveSection,
+  setActiveSection,
   backendURLBaseServices,
   clientId,
   endpoints,
@@ -31,7 +31,7 @@ const QuestionsView = ({
     );
   };
   const back = () => {
-  setACtiveSection("questions")
+  setActiveSection("questions")
     setError(false);
   };
   const handleChange = (e) => {
