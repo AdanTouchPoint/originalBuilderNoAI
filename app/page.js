@@ -4,11 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import MainForm from "./components/MainForm";
 import LoadingMainForm from "./components/LoadingMainForm";
 import { fetchMainContent } from "./assets/petitions/fetchMainContent";
+import { fetchRepresentatives } from "./assets/petitions/fetchRepresentatives";
 
 function Home() {
   const [emailData, setEmailData] = useState({
     userName: "",
-  });
+  });//eliminar
   const [dataUser, setDataUser] = useState({});
   const [backendURLBase] = useState(`${process.env.NEXT_PUBLIC_URL}`);
   const [backendURLBaseServices] = useState(
@@ -20,10 +21,10 @@ function Home() {
   const campaignType = "SB";
   const [clientId] = useState(`${process.env.NEXT_PUBLIC_CLIENT_ID}`);
   const [endpoints] = useState({
-    toSendBatchEmails: "/email-batch/",
+    toSendEmails: "/email-builder/",
     toGetRepresentativesPerStates: "/representatives-state/",
     toGetRepresentativesPerParty: "/representatives-party/",
-    toGetAllRepresentatives: "/all-senators/",
+    toGetAllRepresentatives: "/all-representatives/",
     toGetRepresentativesByCp: "/find-mp-demo/",
     toGetMainData: "/main/",
   });
@@ -39,11 +40,19 @@ function Home() {
     repeatButtonTyp: "Please fill in this field on the dashboard",
   });
   const [loading, setLoading] = useState(true);
-  const [allDataIn, setAllDataIn] = useState([]);
+  const [emails, setEmails] = useState([
+    {
+      name:'test',
+      contact:'adan.mijangos@touchpointmarketing.mx'}, 
+    {
+      name:'tests',
+      contact:'adan.mijangos@touchpointmarketing.mx'
+    }
+  ]);
   const [colors, setColors] = useState({});
   const getInitialState = async (backendURLBase,id,clientId, campaignType) => { 
     const initialState = await fetchMainContent(backendURLBase,id,clientId, campaignType)
-    //const getRepresentatives = await fetchRepresentatives(backendURLBase,endpoints,clientId, setEmails)
+    const getRepresentatives = await fetchRepresentatives(backendURLBase,endpoints,clientId, setEmails)
     if (initialState === false) {
       return setErr(true)
     }
@@ -122,7 +131,7 @@ function Home() {
           dataQuestions={dataQuestions}
           questions={questions}
           setQuestions={setQuestions}
-          allDataIn={allDataIn}
+          emails={emails}
           colors={colors}
         />
       )}

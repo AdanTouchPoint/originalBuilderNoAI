@@ -22,7 +22,7 @@ const MainForm = ({
   backendURLBase,
   endpoints,
   backendURLBaseServices,
-  allDataIn,
+  emails,
   colors,
   formFields,
   dataQuestions,
@@ -61,7 +61,7 @@ const MainForm = ({
     }
     setValidated(true);
     setDataUser({...dataUser,
-     email: allDataIn
+     email: emails
     })
     setActiveSection('listSelect')
     setError(false);

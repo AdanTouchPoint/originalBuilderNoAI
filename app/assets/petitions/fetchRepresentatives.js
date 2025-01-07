@@ -1,16 +1,22 @@
-import { fetchData } from "./fetchData";
-
-const fetchRepresentatives = async (petitionMethod, backendURLBase, endpoint, clientId, params = '', setAllDataIn) => {
-    const datos = await fetchData(petitionMethod, backendURLBase, endpoint, clientId, params)
-    const data = datos.data
-    const arr  = []
-    for (let index = 0; index < data.length; index++) {
-        const element = data[index].email;
-        arr.push(element)
-    }
-    setAllDataIn(arr)
-}
-
-export{
-    fetchRepresentatives
-}
+const fetchRepresentatives = async (
+    backendURLBase,
+    endpoints,
+    clientId,
+    setEmails
+  ) => {
+    console.log("fetchReps");
+    const requestOptions = {
+      method: "GET",
+      redirect: "follow",
+    };
+    const datos = await fetch(
+      `${backendURLBase}${endpoints.toGetAllRepresentatives}?clientId=${clientId}`,
+      requestOptions
+    );
+    const response = await datos.json();
+    setEmails(response.data);
+    return true;
+  };
+  
+  export { fetchRepresentatives };
+  

@@ -43,6 +43,7 @@ const QuestionsView = ({
   const hoy = new Date();
   const today = hoy.toDateString();
   const click = async (e) => {
+    console.log(questions)
     e.preventDefault();
     if (!dataUser.subject) return setError(true);
     let message = JSON.stringify(questions);
@@ -53,9 +54,10 @@ const QuestionsView = ({
       clientId,
       `questions=${message}&user=${JSON.stringify(dataUser)}`
     );
+    console.log(payload)
     if (payload.success === true) {
       fetchLeads(true, backendURLBase, endpoints, clientId, dataUser, message);
-      setACtiveSection("typ")
+      setActiveSection("typ")
     }
     if (payload.success !== true) {
       fetchLeads(false, backendURLBase, endpoints, clientId, dataUser, message);
