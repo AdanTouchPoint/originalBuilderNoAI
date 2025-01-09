@@ -9,7 +9,7 @@ import QuestionsView from "./QuestionsView";
 import ThankYou from "./ThankYou";
 import { animateScroll as scroll } from "react-scroll";
 import LoadingMainForm from "./LoadingMainForm";
-import { verifyInputs } from "../assets/helpers/utilities";
+import { fetchLeads } from "../assets/petitions/fetchLeads";
 const MainForm = ({
   dataUser,
   setDataUser,
@@ -60,12 +60,21 @@ const MainForm = ({
       return;
     }
     setValidated(true);
+    setError(false);
     setDataUser({...dataUser,
      email: emails
     })
+    fetchLeads(
+      "NA",
+      backendURLBase,
+      endpoints,
+      clientId,
+      dataUser,
+      emailData,
+      "NA",
+      "main-form-data-user"
+    );
     setActiveSection('listSelect')
-    setError(false);
-    setValidated(false);
   };
   console.log(dataUser);
   const renderMainFormSection= ()=>{
@@ -221,6 +230,10 @@ const MainForm = ({
         error={error}
         setDataUser={setDataUser}
         dataUser={dataUser}
+        backendURLBase={backendURLBase}
+        endpoints={endpoints}
+        emailData={emailData}
+        clientId={clientId}
       />
       case 'questions':
         return <Questions
@@ -233,6 +246,10 @@ const MainForm = ({
         setValidated={setValidated}
         error={error}
         setError={setError}
+        backendURLBase={backendURLBase}
+        endpoints={endpoints}
+        emailData={emailData}
+        clientId={clientId}
       />
       case 'questionsView':
         return <QuestionsView

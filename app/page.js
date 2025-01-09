@@ -27,6 +27,7 @@ function Home() {
     toGetAllRepresentatives: "/all-representatives/",
     toGetRepresentativesByCp: "/find-mp-demo/",
     toGetMainData: "/main/",
+    toSaveLeads: "/leads/"
   });
   const  [err, setErr] = useState(false);
   const [mp, setMp] = useState([]);

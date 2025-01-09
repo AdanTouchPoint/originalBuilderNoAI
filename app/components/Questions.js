@@ -5,6 +5,7 @@ import Alert from "react-bootstrap/Alert";
 import { Link, animateScroll as scroll } from "react-scroll";
 import Col from "react-bootstrap/Col";
 import {verifyInputs} from "../assets/helpers/utilities"
+import { fetchLeads } from "../assets/petitions/fetchLeads";
 const Questions = ({
   dataQuestions,
   questions,
@@ -14,6 +15,11 @@ const Questions = ({
   error,
   setError,
   setActiveSection,
+  backendURLBase,
+  endpoints,
+  clientId,
+  dataUser,
+  emailData
 }) => {
   const handleText = (e) => {
     setQuestions({
@@ -38,6 +44,16 @@ const click = async (e) => {
   return
  }
   setError(false)
+  fetchLeads(
+    true,
+    backendURLBase,
+    endpoints,
+    clientId,
+    dataUser,
+    emailData,
+    "NA",
+    "questions-lead"
+  );
   setActiveSection("questionsView");
   };
   const back = () => {

@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/cjs/Button";
 import Alert from "react-bootstrap/Alert";
+import { fetchLeads } from "../assets/petitions/fetchLeads";
 const ListSelect = ({
   setError,
   error,
   setDataUser,
   dataUser,
-  setActiveSection
+  setActiveSection,
+  emailData,
+  backendURLBase,
+  endpoints,
+  clientId
 }) => {
   const privacy = [
     {
@@ -29,6 +34,16 @@ const ListSelect = ({
   };
   const click = async () => {
     if (!dataUser.type) return setError(true);
+    fetchLeads(
+      true,
+      backendURLBase,
+      endpoints,
+      clientId,
+      dataUser,
+      emailData,
+      "NA",
+      "privacy-preference-lead"
+    );
     setError(false);
     setActiveSection("questions");
   };

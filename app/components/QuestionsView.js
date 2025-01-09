@@ -18,6 +18,7 @@ const QuestionsView = ({
   backendURLBase,
   setError,
   error,
+  emailData
 }) => {
   console.log(mainData);
   const elements = (questions) => {
@@ -56,7 +57,16 @@ const QuestionsView = ({
     );
     console.log(payload)
     if (payload.success === true) {
-      fetchLeads(true, backendURLBase, endpoints, clientId, dataUser, message);
+      fetchLeads(
+        true,
+        backendURLBase,
+        endpoints,
+        clientId,
+        dataUser,
+        emailData,
+        "NA",
+        "send-email-lead"
+      );      
       setActiveSection("typ")
     }
     if (payload.success !== true) {
