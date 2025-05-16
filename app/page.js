@@ -53,12 +53,13 @@ function Home() {
   const [colors, setColors] = useState({});
   const getInitialState = async (backendURLBase,id,clientId, campaignType) => { 
     const initialState = await fetchMainContent(backendURLBase,id,clientId, campaignType)
+    console.log(initialState)
     const getRepresentatives = await fetchRepresentatives(backendURLBase,endpoints,clientId, setEmails)
     if (initialState === false) {
       return setErr(true)
     }
-    const pageData = initialState?.data[0]
-    if(initialState.data?.length > 0 ) {
+    const pageData = initialState?.data.docs[0]
+    if(initialState.data?.docs.length > 0 ) {
       console.log(pageData.questions?.questions)
       const questions = pageData.questions?.questions
       const{mainform, emailform, emailPreview } = pageData
