@@ -9,7 +9,8 @@ const fetchRepresentatives = async (
           { cache: 'no-store' }
         );
         const response = await datos.json();
-        return response.data;
+        console.log("fetchRepresentatives", response.data);
+        return response.data[0];
     } catch (error) {
         console.error("Error fetching representatives:", error);
         return false;

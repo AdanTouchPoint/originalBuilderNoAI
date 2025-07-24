@@ -15,15 +15,15 @@ const fetchLeads = (
     endpoints.toSaveLeads,
     clientId,
     `&names=${dataUser.userName ? dataUser.userName : "NA"}&postalcode=${
-      dataUser.postcode ? dataUser.postcode : "NA"
+      dataUser.postcode ? dataUser.postcode : emailData.labelpostcode ? emailData.labelpostcode : "NA"
     }&contact=${
       dataUser?.emailUser ? dataUser.emailUser : "NA"
-    }&representative=${emailData?.name ? emailData?.name : "NA"}&emailMessage=${
+    }&representative=${emailData?.name ? emailData?.name : "NA"}&representativeEmail=${emailData?.email ? emailData?.email : "NA"}&emailMessage=${
       emailMessage ? JSON.stringify(emailMessage) : "NA"
     }&sended=${successResponse}&subject=${
       dataUser.subject ? dataUser.subject : "NA"
     }&city=${dataUser.city ? dataUser.city : "NA"}&party=${
-      dataUser.party ? dataUser.party : "NA"
+      emailData.party ? emailData.party : "NA"
     }&type=${leadType}&projectId=${dataUser.projectId ? dataUser.projectId : "NA"}`
   );
   // console.log(clientId, 'clientID')

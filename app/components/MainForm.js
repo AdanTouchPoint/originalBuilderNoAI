@@ -72,20 +72,22 @@ const MainForm = () => {
   };
 
   const click = async (e) => {
+
     if (!validateFields()) {
       setError(true);
       return;
-    }
+    }    
+    setShowLoadSpin(true);
     setValidated(true);
     setError(false);
-    setDataUser({ ...dataUser, email: emails });
+    setDataUser({ ...dataUser});
     fetchLeads(
       "NA",
       backendURLBase,
       endpoints,
       clientId,
       dataUser,
-      emailData,
+      emails,
       "NA",
       "main-form-data-user"
     );
@@ -109,7 +111,9 @@ const MainForm = () => {
         [e.target.name]: e.target.value,
       });
     };
-
+    console.log("dataUser", dataUser);
+    console.log("emailData", emailData);
+    console.log(emails)
     return (
       <div className={"container container-content"}>
         {error ? (

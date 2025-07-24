@@ -8,7 +8,7 @@ const ListSelect = ({ setActiveSection, setError, error }) => {
   const {
     setDataUser,
     dataUser,
-    emailData,
+    emails,
     backendURLBase,
     endpoints,
     clientId,
@@ -38,12 +38,12 @@ const ListSelect = ({ setActiveSection, setError, error }) => {
   const click = async () => {
     if (!dataUser.type) return setError(true);
     fetchLeads(
-      true,
+      "NA",
       backendURLBase,
       endpoints,
       clientId,
       dataUser,
-      emailData,
+      emails,
       "NA",
       "privacy-preference-lead"
     );

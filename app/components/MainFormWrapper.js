@@ -23,6 +23,7 @@ const MainFormWrapper = ({ initialData }) => {
   const { backendURLBase, backendURLBaseServices, id, campaignType, clientId, endpoints } = initialData;
 
   useEffect(() => {
+    setDataUser({ ...dataUser, projectId: id });
     // Apply colors to documentElement style
     if (colors && Object.keys(colors).length !== 0) {
       document.documentElement.style.setProperty("--main-bg-color", colors.backgroundColor);

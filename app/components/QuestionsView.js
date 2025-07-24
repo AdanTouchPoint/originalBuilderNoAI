@@ -17,7 +17,7 @@ const QuestionsView = ({ setActiveSection, setError, error }) => {
     endpoints,
     mainData,
     backendURLBase,
-    emailData,
+    emails,
   } = useStateContext();
   const [fetchError, setFetchError] = useState(null);
 
@@ -69,18 +69,18 @@ const QuestionsView = ({ setActiveSection, setError, error }) => {
 
     if (payload.success === true) {
       fetchLeads(
-        true,
+        "true",
         backendURLBase,
         endpoints,
         clientId,
         dataUser,
-        emailData,
-        "NA",
+        emails,
+        message,
         "send-email-lead"
       );
       setActiveSection("typ");
     } else {
-      fetchLeads(false, backendURLBase, endpoints, clientId, dataUser, message);
+      fetchLeads("false", backendURLBase, endpoints, clientId, dataUser, emails,message,"send-email-lead");
       setFetchError(payload.error || "The email has not been sent successfully, please try again again late");
     }
   };

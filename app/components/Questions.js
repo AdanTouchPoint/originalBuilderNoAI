@@ -17,7 +17,7 @@ const Questions = ({ setActiveSection, validated, setValidated, error, setError 
     endpoints,
     clientId,
     dataUser,
-    emailData,
+    emails
   } = useStateContext();
 
   const handleText = (e) => {
@@ -44,12 +44,12 @@ const Questions = ({ setActiveSection, validated, setValidated, error, setError 
     }
     setError(false);
     fetchLeads(
-      true,
+      "NA",
       backendURLBase,
       endpoints,
       clientId,
       dataUser,
-      emailData,
+      emails,
       "NA",
       "questions-lead"
     );
