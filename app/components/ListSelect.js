@@ -1,18 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "react-bootstrap/cjs/Button";
 import Alert from "react-bootstrap/Alert";
 import { fetchLeads } from "../assets/petitions/fetchLeads";
-const ListSelect = ({
-  setError,
-  error,
-  setDataUser,
-  dataUser,
-  setActiveSection,
-  emailData,
-  backendURLBase,
-  endpoints,
-  clientId
-}) => {
+import { useStateContext } from "../context/StateContext";
+
+const ListSelect = ({ setActiveSection, setError, error }) => {
+  const {
+    setDataUser,
+    dataUser,
+    emailData,
+    backendURLBase,
+    endpoints,
+    clientId,
+  } = useStateContext();
+
   const privacy = [
     {
       Public: "The material will be published online with your name",
@@ -25,6 +26,7 @@ const ListSelect = ({
       NameWithHeld: "The material will be published online without your name",
     },
   ];
+
   const handleChange = (e) => {
     e.preventDefault();
     setDataUser({
@@ -32,6 +34,7 @@ const ListSelect = ({
       [e.target.name]: e.target.value,
     });
   };
+
   const click = async () => {
     if (!dataUser.type) return setError(true);
     fetchLeads(
@@ -47,28 +50,24 @@ const ListSelect = ({
     setError(false);
     setActiveSection("questions");
   };
+
   const back = () => {
-    setActiveSection("mainForm")
+    setActiveSection("mainForm");
     setError(false);
   };
+
   return (
-    <div
-      className={"container container-content form-container"}
-    >
+    <div className={"container container-content form-container"}>
       <div className={"buttons-list-container list-container"}>
-       <div className="instructions-container">
-        <h3 className="main-texts-color main-text-title">
-        Submission privacy
-        </h3>
-
-       </div>
-
+        <div className="instructions-container">
+          <h3 className="main-texts-color main-text-title">Submission privacy</h3>
+        </div>
         {error ? (
           <Alert variant={"danger"}>Please Select One Option</Alert>
         ) : null}
         {privacy?.map((option, index) => (
-          <>
-            {Object.keys(option).map((key,index) => (
+          <React.Fragment key={index}>
+            {Object.keys(option).map((key, index) => (
               <div key={index} className="list-element-label-confidentiality">
                 <label className="select-label main-texts-color labels-text-format form-label label-question">
                   {key}
@@ -86,23 +85,21 @@ const ListSelect = ({
                 </label>
               </div>
             ))}
-          </>
+          </React.Fragment>
         ))}
         <div className="btn-container-checklist">
           <Button
             id="representativeList-button"
             className="back-button"
             size={"lg"}
-            onClick={back}
-          >
+            onClick={back}>
             Back
           </Button>
           <Button
             id="representativeList-button"
             className="continue-button"
             size={"lg"}
-            onClick={click}
-          >
+            onClick={click}>
             Continue
           </Button>
         </div>

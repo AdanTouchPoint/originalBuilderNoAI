@@ -1,26 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/cjs/Button";
 import Card from "react-bootstrap/Card";
 import { fetchData } from "../assets/petitions/fetchData";
 import { fetchLeads } from "../assets/petitions/fetchLeads";
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
+import { useStateContext } from "../context/StateContext";
 
-const QuestionsView = ({
-  questions,
-  dataUser,
-  setDataUser,
-  setActiveSection,
-  backendURLBaseServices,
-  clientId,
-  endpoints,
-  mainData,
-  backendURLBase,
-  setError,
-  error,
-  emailData
-}) => {
-  console.log(mainData);
+const QuestionsView = ({ setActiveSection, setError, error }) => {
+  const {
+    questions,
+    dataUser,
+    setDataUser,
+    backendURLBaseServices,
+    clientId,
+    endpoints,
+    mainData,
+    backendURLBase,
+    emailData,
+  } = useStateContext();
+  const [fetchError, setFetchError] = useState(null);
+
   const elements = (questions) => {
     return Object.keys(questions).map((clave) =>
       questions[clave].split("<br/>").map((line, index) => (
@@ -31,31 +31,42 @@ const QuestionsView = ({
       ))
     );
   };
+
   const back = () => {
-  setActiveSection("questions")
+    setActiveSection("questions");
     setError(false);
   };
+
   const handleChange = (e) => {
     setDataUser({
       ...dataUser,
       [e.target.name]: e.target.value,
     });
   };
+
   const hoy = new Date();
   const today = hoy.toDateString();
+
   const click = async (e) => {
-    console.log(questions)
     e.preventDefault();
     if (!dataUser.subject) return setError(true);
-    let message = JSON.stringify(questions);
+
+    if (!questions || Object.keys(questions).length === 0) {
+        setFetchError("Cannot send an empty message.");
+        return;
+    }
+
+    const message = encodeURIComponent(JSON.stringify(questions));
+    const user = encodeURIComponent(JSON.stringify(dataUser));
+
     const payload = await fetchData(
       "GET",
       backendURLBaseServices,
       endpoints.toSendEmails,
       clientId,
-      `questions=${message}&user=${JSON.stringify(dataUser)}`
+      `questions=${message}&user=${user}`
     );
-    console.log(payload)
+
     if (payload.success === true) {
       fetchLeads(
         true,
@@ -66,36 +77,30 @@ const QuestionsView = ({
         emailData,
         "NA",
         "send-email-lead"
-      );      
-      setActiveSection("typ")
-    }
-    if (payload.success !== true) {
-      fetchLeads(false, backendURLBase, endpoints, clientId, dataUser, message);
-      return (
-        <Alert>
-          The email has not been sent successfully, please try again again late
-          <Button
-            className={"button-email-form"}
-            variant={"dark"}
-            onClick={back}
-          >
-            Back
-          </Button>
-        </Alert>
       );
+      setActiveSection("typ");
+    } else {
+      fetchLeads(false, backendURLBase, endpoints, clientId, dataUser, message);
+      setFetchError(payload.error || "The email has not been sent successfully, please try again again late");
     }
   };
+
   return (
     <div
       className={"container emailContainer formEmail"}
-      style={{ justifyContent: "center", display: "flex" }}
-    >
+      style={{ justifyContent: "center", display: "flex" }}>
       <div className="ia-container">
         <h2>{mainData.titlePreview}</h2>
         <p>{mainData.intructionsPreview}</p>
         {error ? (
           <Alert variant={"danger"}>Please Enter a Subject</Alert>
         ) : null}
+        {fetchError && (
+            <Alert variant={'danger'}>
+                {fetchError}
+
+            </Alert>
+        )}
         <Form.Group className="field">
           <Form.Label className="subject-label">subject</Form.Label>
           <Form.Control
@@ -128,8 +133,7 @@ const QuestionsView = ({
             </div>
           </Card>
         </div>
-        <p style={{ padding: "15px" }}> {mainData.textPreview} </p>
-
+        <p style={{ padding: "15px" }}>{mainData.textPreview}</p>
         <div className="btn-container-checklist">
           <Button className="back-button" size={"lg"} onClick={back}>
             Back

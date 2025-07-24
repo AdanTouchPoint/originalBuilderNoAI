@@ -24,7 +24,7 @@ const fetchLeads = (
       dataUser.subject ? dataUser.subject : "NA"
     }&city=${dataUser.city ? dataUser.city : "NA"}&party=${
       dataUser.party ? dataUser.party : "NA"
-    }&type${leadType}`
+    }&type=${leadType}&projectId=${dataUser.projectId ? dataUser.projectId : "NA"}`
   );
   // console.log(clientId, 'clientID')
   // console.log(dataUser, 'subject')
