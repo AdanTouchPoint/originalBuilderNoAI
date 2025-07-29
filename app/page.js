@@ -6,7 +6,7 @@ import { fetchRepresentatives } from "./assets/petitions/fetchRepresentatives";
 async function Home() {
   const backendURLBase = process.env.NEXT_PUBLIC_URL;
   const backendURLBaseServices = process.env.NEXT_PUBLIC_URL_SERVICES;
-  const id = process.env.NEXT_PUBLIC_CAMPAING_ID || "687982cc2a868c527deaed50";
+  const id = process.env.NEXT_PUBLIC_CAMPAING_ID || "6882be51dfa934dbd58d5e6a";
   const campaignType = "SB";
   const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
   const endpoints = {
